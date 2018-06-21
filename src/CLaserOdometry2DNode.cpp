@@ -104,8 +104,6 @@ CLaserOdometry2DNode::CLaserOdometry2DNode() :
     initial_robot_pose.pose.pose.orientation.z = 0;
   }
 
-  setLaserPoseFromTf();
-
   //Init variables
   module_initialized = false;
   first_laser_scan   = true;
@@ -196,6 +194,7 @@ void CLaserOdometry2DNode::LaserCallBack(const sensor_msgs::LaserScan::ConstPtr&
     }
     else
     {
+      setLaserPoseFromTf();
       init(last_scan, initial_robot_pose.pose.pose);
       first_laser_scan = false;
     }
